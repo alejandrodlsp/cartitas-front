@@ -1,6 +1,6 @@
 <script setup>
 import CardArtwork from "./CardArtwork.vue";
-import { ref, reactive, defineEmits, defineExpose, computed  } from "vue";
+import { ref, reactive, defineEmits, defineExpose, computed } from "vue";
 import {
   Dialog,
   DialogContent,
@@ -104,15 +104,16 @@ function resetPreview() {
 </script>
 
 <template>
-  <Dialog v-model:open="open" class="w-[900px]">
-    <DialogContent class="flex gap-6 min-w-[900px]">
-      <div class="relative w-1/2">
-        <div class="rounded-2xl overflow-hidden shadow-lg relative">
+  <Dialog v-model:open="open" class="w-full max-w-[900px]">
+    <DialogContent class="flex flex-col md:flex-row gap-6 p-4 md:p-6">
+      <!-- Vista previa -->
+      <div class="w-full md:w-1/2 flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-lg">
           <CardArtwork
             mas_desc_length="400"
             :actions="false"
             :card="preview"
-            class="min-w-[350px]"
+            class="w-[85vw] max-w-[350px] md:w-[350px]"
             aspect-ratio="portrait"
             :width="350"
             :height="470"
@@ -120,14 +121,14 @@ function resetPreview() {
         </div>
       </div>
 
-      <div class="w-1/2 space-y-4">
-        <DialogTitle>{{
-          preview.id ? "Editar Carta" : "Crear Nueva Carta"
-        }}</DialogTitle>
-        <DialogDescription
-          >Rellena los datos de tu carta y ajusta la
-          dificultad.</DialogDescription
-        >
+      <!-- Formulario -->
+      <div class="w-full md:w-1/2 space-y-4">
+        <DialogTitle>
+          {{ preview.id ? "Editar Carta" : "Crear Nueva Carta" }}
+        </DialogTitle>
+        <DialogDescription>
+          Rellena los datos de tu carta y ajusta la dificultad.
+        </DialogDescription>
 
         <div class="space-y-3">
           <Input v-model="preview.titulo" placeholder="Título de la carta" />
@@ -141,16 +142,11 @@ function resetPreview() {
             <label class="block mb-1 font-medium"
               >Dificultad: {{ preview.dificultad }}</label
             >
-            <Slider
-              :min="1"
-              :max="5"
-              step="1"
-              v-model="dificultadProxy"
-            />
+            <Slider :min="1" :max="5" step="1" v-model="dificultadProxy" />
           </div>
         </div>
 
-        <div class="flex justify-end mt-4 space-x-2">
+        <div class="flex flex-wrap justify-end mt-4 gap-2">
           <Button variant="outline" @click="open = false">Cancelar</Button>
           <Button @click="saveCard">{{
             preview.id ? "Guardar Cambios" : "Crear Carta"
