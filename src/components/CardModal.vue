@@ -106,7 +106,7 @@ function resetPreview() {
 <template>
   <Dialog v-model:open="open" class="w-full max-w-[900px]">
     <DialogContent class="flex flex-col md:flex-row gap-6 p-4 md:p-6">
-      <!-- Vista previa -->
+      <!-- Vista previa arriba en móvil, izquierda en desktop -->
       <div class="w-full md:w-1/2 flex justify-center">
         <div class="rounded-2xl overflow-hidden shadow-lg">
           <CardArtwork
@@ -121,7 +121,7 @@ function resetPreview() {
         </div>
       </div>
 
-      <!-- Formulario -->
+      <!-- Formulario debajo en móvil, derecha en desktop -->
       <div class="w-full md:w-1/2 space-y-4">
         <DialogTitle>
           {{ preview.id ? "Editar Carta" : "Crear Nueva Carta" }}
