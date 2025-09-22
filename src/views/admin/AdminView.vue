@@ -4,7 +4,9 @@
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-bold flex items-center space-x-2">
         <span>🎃 Cartitas Halloween</span>
-        <span class="text-base font-normal text-gray-500 pt-2">- Panel Admin</span>
+        <span class="text-base font-normal text-gray-500 pt-2"
+          >- Panel Admin</span
+        >
       </h2>
       <div class="flex space-x-3">
         <CreateCardButton @open="cardModal.openModal()" />
@@ -16,7 +18,9 @@
     <!-- Scrollable cards -->
     <div class="relative">
       <ScrollArea>
-        <div class="flex justify-center space-x-4 pb-4">
+        <div
+          class="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-4 pb-4"
+        >
           <CardArtwork
             v-for="card in cards"
             v-if="cards.length > 0"
@@ -25,19 +29,19 @@
             @edit="cardModal.openModal(card)"
             :key="card.titulo"
             :card="card"
-            class="w-[350px]"
+            class="w-[85vw] sm:w-[300px] md:w-[350px]"
             aspect-ratio="portrait"
             :width="350"
             :height="470"
           />
           <Card
-            class="w-[350px] h-[470px] flex items-center justify-center border-dashed border-2 border-gray-300 text-gray-500"
             v-else
+            class="w-[85vw] sm:w-[300px] md:w-[350px] h-[470px] flex items-center justify-center border-dashed border-2 border-gray-300 text-gray-500"
           >
             No hay cartas disponibles
           </Card>
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="horizontal" class="hidden md:block" />
       </ScrollArea>
     </div>
   </div>
