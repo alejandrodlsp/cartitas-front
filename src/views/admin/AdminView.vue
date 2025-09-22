@@ -1,14 +1,20 @@
 <template>
   <div class="p-6">
     <!-- Header con título y botones -->
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold flex items-center space-x-2">
+    <div
+      class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-3 md:space-y-0"
+    >
+      <h2
+        class="text-xl sm:text-2xl font-bold flex flex-wrap items-center space-x-2"
+      >
         <span>🎃 Cartitas Halloween</span>
-        <span class="text-base font-normal text-gray-500 pt-2"
-          >- Panel Admin</span
+        <span
+          class="text-sm sm:text-base font-normal text-gray-500 pt-1 sm:pt-2"
         >
+          - Panel Admin
+        </span>
       </h2>
-      <div class="flex space-x-3">
+      <div class="flex flex-wrap md:flex-nowrap gap-2 md:space-x-3">
         <CreateCardButton @open="cardModal.openModal()" />
         <CardModal ref="cardModal" @created="loadCards" @updated="loadCards" />
         <Button variant="destructive" @click="logout">🚪 Cerrar Sesión</Button>
