@@ -1,15 +1,15 @@
 <template>
-  <div class="p-6">
+  <div class="p-6 bg-gray-50 dark:bg-gray-900 dark:text-gray-100 min-h-screen">
     <!-- Header con título y botones -->
     <div
       class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-3 md:space-y-0"
     >
       <h2
-        class="text-xl sm:text-2xl font-bold flex flex-wrap items-center space-x-2"
+        class="text-xl sm:text-2xl font-bold flex flex-wrap items-center space-x-2 text-gray-900 dark:text-gray-100"
       >
         <span>🎃 Cartitas Halloween</span>
         <span
-          class="text-sm sm:text-base font-normal text-gray-500 pt-1 sm:pt-2"
+          class="text-sm sm:text-base font-normal text-gray-500 dark:text-gray-400 pt-1 sm:pt-2"
         >
           - Panel Admin
         </span>
@@ -23,9 +23,9 @@
 
     <!-- Scrollable cards -->
     <div class="relative">
-      <ScrollArea>
+      <div class="h-[100vh] overflow-y-auto">
         <div
-          class="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-4 pb-4"
+          class="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-4 pb-4"
         >
           <CardArtwork
             v-for="card in cards"
@@ -35,28 +35,27 @@
             @edit="cardModal.openModal(card)"
             :key="card.titulo"
             :card="card"
-            class="w-[85vw] sm:w-[300px] md:w-[350px]"
+            mas_desc_length="300"
+            class="w-full"
             aspect-ratio="portrait"
             :width="350"
             :height="470"
           />
           <Card
             v-else
-            class="w-[85vw] sm:w-[300px] md:w-[350px] h-[470px] flex items-center justify-center border-dashed border-2 border-gray-300 text-gray-500"
+            class="w-full h-[470px] flex items-center justify-center border-dashed border-2 border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400"
           >
             No hay cartas disponibles
           </Card>
         </div>
-        <ScrollBar orientation="horizontal" class="hidden md:block" />
-      </ScrollArea>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { Card, CardContent } from "@/components/ui/card";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CardArtwork from "@/components/CardArtwork.vue";
 import CreateCardButton from "@/components/CreateCardButton.vue";
@@ -70,8 +69,6 @@ const loadCards = async () => {
   try {
     const res = await secured_api.get("/admin/cartas");
     cards.value = res.data;
-    console.log(res.data);
-    console.log(cards.value);
   } catch (err) {
     console.error("Error cargando cartas:", err);
   }

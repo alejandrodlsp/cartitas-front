@@ -77,10 +77,10 @@ async function deleteCard() {
 
           <!-- Overlay con texto dentro de la imagen -->
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-3">
-            <h3 class="text-base font-semibold text-white drop-shadow-md">
+            <h3 class="text-2xl font-semibold text-white drop-shadow-md">
               {{ card.titulo }}
             </h3>
-            <p class="text-sm text-gray-200 leading-tight drop-shadow break-words break-normal">
+            <p class="text-xl text-gray-200 leading-tight drop-shadow break-words break-normal">
               {{ truncatedDescription }}
             </p>
           </div>
