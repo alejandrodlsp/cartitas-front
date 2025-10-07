@@ -48,7 +48,7 @@
 
   <!-- Botón -->
   <div class="mt-6 flex flex-col gap-3">
-    <Button>🔄 Sacar otra carta</Button>
+    <Button @click="loadCard">🔄 Sacar otra carta</Button>
     <Button variant="destructive" size="sm" @click="clearSession">
       🧹 Limpiar Historial
     </Button>
